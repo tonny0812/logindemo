@@ -1,10 +1,22 @@
+var express = require('express');
 var superagent = require('superagent');
 var events = require("events");
 
 var emitter = new events.EventEmitter();
 
-setCookeie();
+var app = express();
+
 emitter.on("setCookeie", getTitles);           //监听setCookeie事件
+app.get("/",function(req,resp){
+	setCookeie();
+	resp.write('test');
+	resp.end();
+});
+
+
+app.listen(3000,function(req,resp){
+    console.log("server is running ......");    
+});
 
 function setCookeie () {
   superagent.post('http://bbs.yingjiesheng.com')  //学校里的一个论坛，这是登录提交地址
@@ -33,7 +45,7 @@ function getTitles (cookie) {
                 if (err){
                 	throw err;
                 }
-                console.log(res)
+              //  console.log(res)
                 //do something
           });
 }
