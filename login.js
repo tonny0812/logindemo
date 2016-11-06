@@ -5,6 +5,7 @@ var cheerio = require('cheerio');
 var superagent = require('superagent');
 var events = require("events");
 var querystring = require('querystring');
+var moment = require('moment');
 
 var app = new express();
 var emitter = new events.EventEmitter();
@@ -187,12 +188,12 @@ endRule.minute = 15;
 
 var start = schedule.scheduleJob(startRule, function(){
 	getLoginPageInfo(logIn);
-	console.log('第一次打卡');
+	console.log(new moment().format('YYYY-MM-DD HH:mm:ss') + '第一次打卡');
 });
 
 var end = schedule.scheduleJob(endRule, function(){
 	getLoginPageInfo(logIn);
-	console.log('第二次打卡');
+	console.log(new moment().format('YYYY-MM-DD HH:mm:ss') + '第二次打卡');
 });
 
 app.get('/', function(req, res) {
