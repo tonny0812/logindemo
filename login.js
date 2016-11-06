@@ -195,14 +195,6 @@ var end = schedule.scheduleJob(endRule, function(){
 	console.log('第二次打卡');
 });
 
-var date = new Date(2016,11,6,16,0,0);
-
-var j = schedule.scheduleJob(date, function(){
-	getLoginPageInfo(logIn);
-	console.log("执行任务");
-
-});
-
 app.get('/', function(req, res) {
 	getLoginPageInfo(logIn);
 	res.write('login');
