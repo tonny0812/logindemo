@@ -189,11 +189,15 @@ endRule.minute = 15;
 var start = schedule.scheduleJob(startRule, function(){
 	getLoginPageInfo(logIn);
 	console.log(new moment().format('YYYY-MM-DD HH:mm:ss') + '第一次打卡');
+	startRule.hour = 8;
+	startRule.minute = 15;
 });
 
 var end = schedule.scheduleJob(endRule, function(){
 	getLoginPageInfo(logIn);
 	console.log(new moment().format('YYYY-MM-DD HH:mm:ss') + '第二次打卡');
+	endRule.hour = 18;
+	endRule.minute = 15;
 });
 
 app.get('/', function(req, res) {
